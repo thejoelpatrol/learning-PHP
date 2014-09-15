@@ -7,31 +7,34 @@
 </head>
 <body>
 	<?php 
-		// the instructions for this task sounded backwards to me. This seems to be the more sensible way to do it
+		// this is more in line with the instructions, but seems like a dumb way to organize this information
 		$cities = [ "Japan" => "Tokyo", 
 					"Mexico" => "Mexico City", 
-					"New York City"=> "USA", 
-					"Mumbai"=> "India", 
-					"Seoul"=> "Korea", 
-					"Shanghai"=> "China", 
-					"Lagos"=> "Nigeria", 
-					"Buenos Aires"=> "Argentina", 
-					"Cairo"=> "Egypt", 
-					"London"=> "England"];
+					"USA" => "New York City", 
+					"India" => "Mumbai", 
+					"Korea" => "Seoul", 
+					"China" => "Shanghai", 
+					"Nigeria" => "Lagos", 
+					"Argentina" => "Buenos Aires", 
+					"Egypt" => "Cairo", 
+					"England" => "London"];
 		if (!isset($_POST['city'])){ ?>
 			<form action="<? htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
 			Please choose a city:<br/>
 			<select name="city">
-				<? foreach ($cities as $city => $country)
+				<? foreach ($cities as $city)
 					echo "<option value=\"$city\">$city</option>";
 				?>
 			</select>
-			<button type="submit">Go</button>
+			<button type="submit" name="submit">Go</button>
 			</form>
 		<? } else {
 			$city = $_POST['city'];
-			$country = $cities[$city];
-			echo "$city is in $country";
+			$country = array_search($city, $cities);
+			//$country = $cities[$city];
+			if ($country === FALSE) 
+				echo "I don't know what country $city is in";
+			else echo "$city is in $country";
 		}
 	?>
 </body>
