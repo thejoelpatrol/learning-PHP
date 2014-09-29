@@ -9,15 +9,20 @@
 		}
 
 		public function search ($target) {
-			return $this->searchTree($this->root, $target);
+			$foundNode = &$this->searchTree($this->root, $target);
+			if (!is_null($foundNode))
+				return true;
+			return false;
 		}
 
-		private function searchTree ($root, $target) {
+		// objects are passed by pointer anyway, but we use an explicit reference here 
+		// since we will return a reference that can be used to modify where &$root points
+		private function &searchTree (&$root, $target) {
 			if (is_null($root))
-				return false;
+				return $root;
 			$value = $root->value;
 			if ($value == $target)
-				return true;
+				return $root;
 			if ($value < $target)
 				return $this->searchTree($root->right, $target);
 			return $this->searchTree($root->left, $target);
@@ -27,11 +32,13 @@
 			if (is_null($this->root)) {
 				$this->root = new Node($value);
 			} else {
-				$this->insertValue($this->root, $value);
+				//$this->insertValue($this->root, $value);
+				$foundNode = &$this->searchTree($this->root, $value);
+				if (is_null($foundNode))
+					$foundNode = new Node($value);
 			}
 		}
 
-		// objects are passed by pointer anyway, but we use an explicit reference here since we may change what $root points to
 		private function insertValue(&$root, $value) {
 			if (is_null($root)) {
 				$root = new Node($value);
@@ -41,6 +48,10 @@
 				else $this->insertValue($root->right, $value);
 			}
 		}
+
+		/*public function delete($value) {
+			$foundNode = 
+		}*/
 	}
 
 	class Node {
