@@ -22,7 +22,7 @@
 		$query->execute();
 		$unsortedArray = $query->fetchAll();
 		$arrayToSort = $unsortedArray;
-		$beginMine = microtime($true);
+		$beginMine = microtime(true);
 		quicksort($arrayToSort, 0, count($arrayToSort) - 1, 'id', 'value');
 		echo 'My time: '.(microtime(true) - $beginMine).'<br>';
 
@@ -30,7 +30,7 @@
 		unset($arrayToSort);
 
 		$rightAnswer = $unsortedArray;
-		$beginBuiltin = microtime($true);
+		$beginBuiltin = microtime(true);
 		usort($rightAnswer, function($a, $b) { return $a['value'] - $b['value'];});
 		echo 'Builtin sort time: '.(microtime(true) - $beginBuiltin).'<br>';
 		if (!equalValues($rightAnswer, $sortedArray)) {
@@ -39,6 +39,7 @@
 
 	} catch (PDOException $e) {
 		echo "Query error: ".$query->errorCode;
+		exit();
 	}	
 	include 'quicksort_html_template.php';
 ?>
