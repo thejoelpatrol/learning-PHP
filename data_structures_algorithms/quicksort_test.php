@@ -17,7 +17,7 @@
 	$limit = 100000;
 
 	$practiceDB = new Database('algorithm_practice');
-	$query = $practiceDB->db->prepare("SELECT * FROM sorting WHERE id < $limit");
+	$query = $practiceDB->db->prepare("SELECT * FROM sorting WHERE id <= $limit");
 	try {
 		$query->execute();
 		$unsortedArray = $query->fetchAll();
