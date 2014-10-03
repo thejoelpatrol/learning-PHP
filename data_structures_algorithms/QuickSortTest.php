@@ -15,21 +15,25 @@
 		}
 
 		public function pullData () {
+			$unsortedArray1000 = $this->generateData(1000);
+			$unsortedArray10000 =  $this->generateData(10000);
+			$unsortedArray100000 =  $this->generateData(100000);
+			$unsortedArray = array(array($unsortedArray1000), array($unsortedArray10000), array($unsortedArray100000));
+			return $unsortedArray;
+		}
+
+		private function generateData ($size) {
 			$uniqueArray = array();
 			$randomArray = array();
-			srand(25);
-			for ($i = 1; $i <= 100000; $i++) {
+			srand($size);
+			for ($i = 1; $i <= $size; $i++) {
 				$randomInt = rand(1, 10000);
 				if (!in_array($randomInt, $uniqueArray)) {
 					$uniqueArray[] = $randomInt;
 					$randomArray[] = ['id' => $i, 'value' => $randomInt];
 				}
 			}
-			$unsortedArray1000 = array_slice($randomArray, 0, 1000);
-			$unsortedArray10000 =  array_slice($randomArray, 0, 10000);
-			$unsortedArray100000 =  array_slice($randomArray, 0, 100000);
-			$unsortedArray = array(array($unsortedArray1000), array($unsortedArray10000), array($unsortedArray100000));
-			return $unsortedArray;
+			return $randomArray;
 		}
 	}
 
