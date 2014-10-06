@@ -1,11 +1,11 @@
 <?php
-	function quicksort(array &$array, $start, $end, $key, $value) {
+	function quicksort(array &$array, $start, $end, $value) {
 		if ($start >= $end)
 			return;
 		$pivotStartIndex = pickPivot($array, $start, $end);
 		$pivotNewIndex = partition($array, $start, $end, $pivotStartIndex, $value);
-		quicksort($array, $start, $pivotNewIndex - 1, $key, $value);
-		quicksort($array, $pivotNewIndex + 1, $end, $key, $value);
+		quicksort($array, $start, $pivotNewIndex - 1, $value);
+		quicksort($array, $pivotNewIndex + 1, $end, $value);
 	}	
 
 	function pickPivot(&$array, $start, $end) {
@@ -22,10 +22,9 @@
 			while ($right > $start && $array[$right][$fieldToCompare] > $pivot)
 				$right--;
 			if ($right > $left)
-				swap($array, $left, $right);		
+				swap($array, $left, $right);	
 		}
-		if ($right > $pivotIndex)
-			swap($array, $pivotIndex, $right);
+		swap($array, $pivotIndex, $right);
 		return $right;
 	}
 

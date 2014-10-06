@@ -23,7 +23,7 @@
 		$unsortedArray = $query->fetchAll();
 		$arrayToSort = $unsortedArray;
 		$beginMine = microtime(true);
-		quicksort($arrayToSort, 0, count($arrayToSort) - 1, 'id', 'value');
+		quicksort($arrayToSort, 0, count($arrayToSort) - 1, 'value');
 		echo 'My time: '.(microtime(true) - $beginMine).'<br>';
 
 		$sortedArray = &$arrayToSort;

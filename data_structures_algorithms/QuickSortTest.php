@@ -3,15 +3,37 @@
 	require_once 'quicksort.php';
 
 	class QuickSortTest extends PHPUnit_Framework_TestCase {
+
+		public function testEmpty () {
+			$empty = array();
+			quicksort($empty, 0, 0, '');			
+			$this->assertEmpty($empty);
+		}
+
+		public function testOneItem () {
+			$oneItem = array('value' => 5);
+			quicksort($oneItem, 0, 0, 'value');		
+			$this->assertCount(1, $oneItem);	
+			$this->assertSame($oneItem, array('value' => 5));
+		}		
+
 		/**
 		 * @dataProvider pullData
 		 */
 		public function testSort ($unsortedArray) {
 			$correctSorted = $unsortedArray;
 			$arrayToSort = $unsortedArray;
-			quicksort($arrayToSort, 0, count($arrayToSort) - 1, 'id', 'value');
+			quicksort($arrayToSort, 0, count($arrayToSort) - 1, 'value');
 			usort($correctSorted, function($a, $b) { return $a['value'] - $b['value'];});
 			$this->assertEquals($correctSorted, $arrayToSort);
+		}
+
+
+		/**
+		 *
+		 */
+		public function testTest () {
+
 		}
 
 		public function pullData () {
