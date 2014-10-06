@@ -3,6 +3,7 @@
 	require_once 'quicksort.php';
 
 	class QuickSortTest extends PHPUnit_Framework_TestCase {
+		private $db;
 
 		public function testEmpty () {
 			$empty = array();
@@ -18,6 +19,19 @@
 		}		
 
 		/**
+		 * @test
+		 */
+		public function sortDBdata  () {
+			$this->markTestIncomplete('Have not added the database yet.');
+		}
+
+		public function testSkip () {
+			// this test should be skipped
+			if (is_null($db))
+				$this->markTestSkipped('Skipping database test, as a test of skipping a test.');
+		}
+
+		/**
 		 * @dataProvider pullData
 		 */
 		public function testSort ($unsortedArray) {
@@ -26,14 +40,6 @@
 			quicksort($arrayToSort, 0, count($arrayToSort) - 1, 'value');
 			usort($correctSorted, function($a, $b) { return $a['value'] - $b['value'];});
 			$this->assertEquals($correctSorted, $arrayToSort);
-		}
-
-
-		/**
-		 *
-		 */
-		public function testTest () {
-
 		}
 
 		public function pullData () {
