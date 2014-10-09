@@ -40,6 +40,19 @@
 			$this->assertPresent($this->dataArray[3], $this->binarySearchTree);
 		}
 
+		/** 
+		 * @depends testDeletingRoot
+		 */
+		public function testDeleting1000() {
+			for ($i = 0; $i < 1000; $i++) {
+				$value = $this->dataArray[$i];
+				$this->binarySearchTree->delete($value);
+				$this->assertNotPresent($value, $this->binarySearchTree);
+			}
+			for ($i = 1000; $i < self::SIZE; $i++)
+				$this->assertPresent($this->dataArray[$i], $this->binarySearchTree);
+		}
+
 		public function assertPresent($value, $tree) {
 			$this->assertTrue($tree->search($value), "$value was not found when it should be.");
 		}
