@@ -31,6 +31,7 @@
 				$this->assertPresent($presentValue, $this->binarySearchTree);
 		}
 
+
 		public function testDeletingRoot() {
 			$root = $this->dataArray[0];
 			$this->binarySearchTree->delete($root);
