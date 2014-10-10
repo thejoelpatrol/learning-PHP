@@ -3,4 +3,8 @@
 		<directory>/Applications/MAMP/htdocs/learning_tasks/data_structures_algorithms</directory>
 		<exclude>/Applications/MAMP/htdocs/learning_tasks/data_structures_algorithms/EmptyTest.php</exclude>
 	</testsuite>
+	<logging>
+		<log type="testdox-text" target="test_documentation.txt" />
+		<log type="tap" target="test_log.tap" />
+	</logging>
 </testsuites>	

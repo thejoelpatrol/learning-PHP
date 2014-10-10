@@ -1,0 +1,15 @@
+BinarySearchTree
+ [x] Root node is inserted
+ [x] All test values are inserted
+ [x] Tree structure is maintained when deleting root
+ [x] Tree structure is maintained when deleting 1000 items
+ [x] Insertion works after deleting 1000 items
+ [x] Inserting a word throws an exception
+
+QuickSort
+ [x] Sorting empty array does nothing
+ [x] Sorting one item array does nothing
+ [ ] Sort database data
+ [ ] Skip
+ [x] Large arrays of random numbers are properly sorted
+

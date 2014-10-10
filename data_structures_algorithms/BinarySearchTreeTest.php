@@ -22,17 +22,17 @@
 		* @covers BinarySearchTree::__construct
  		* @covers BinarySearchTree::insert
 		*/
-		public function testRoot() {
+		public function testRootNodeIsInserted() {
 			$root = $this->dataArray[0];
 			$this->assertPresent($root, $this->binarySearchTree);
 		}
 
 		/**
-		 * @depends testRoot
+		 * @depends testRootNodeIsInserted
 		 * @covers BinarySearchTree::__construct
  		 * @covers BinarySearchTree::insert
 		 */
-		public function testAllValues() {
+		public function testAllTestValuesAreInserted() {
 			foreach ($this->dataArray as $presentValue)
 				$this->assertPresent($presentValue, $this->binarySearchTree);
 		}
@@ -40,7 +40,7 @@
 		/** 
 		* @covers BinarySearchTree::delete
 		*/
-		public function testDeletingRoot() {
+		public function testTreeStructureIsMaintainedWhenDeletingRoot() {
 			$root = $this->dataArray[0];
 			$this->binarySearchTree->delete($root);
 			$this->assertNotPresent($root, $this->binarySearchTree);
@@ -50,10 +50,10 @@
 		}
 
 		/** 
-		 * @depends testDeletingRoot
+		 * @depends testTreeStructureIsMaintainedWhenDeletingRoot
  		 * @covers BinarySearchTree::delete
 		 */
-		public function testDeleting1000() {
+		public function testTreeStructureIsMaintainedWhenDeleting1000Items() {
 			for ($i = 0; $i < 1000; $i++) {
 				$value = $this->dataArray[$i];
 				$this->binarySearchTree->delete($value);
@@ -64,11 +64,11 @@
 		}
 
 		/**
-		 * @depends testDeleting1000
+		 * @depends testTreeStructureIsMaintainedWhenDeleting1000Items
  		 * @covers BinarySearchTree::delete
  		 * @covers BinarySearchTree::insert
 		 */
-		public function testDeleteAndInsert() {
+		public function testInsertionWorksAfterDeleting1000Items() {
 			for ($i = 0; $i < 1000; $i++) {
 				$value = $this->dataArray[$i];
 				$this->binarySearchTree->delete($value);
@@ -88,7 +88,7 @@
 		 * @expectedException InvalidArgumentException
 		 * @expectedExceptionCode 1
 		 */
-		public function testException() {
+		public function testInsertingAWordThrowsAnException() {
 			$this->binarySearchTree->insert("hey");
 		}	
 

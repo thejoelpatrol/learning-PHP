@@ -5,13 +5,13 @@
 	class QuickSortTest extends PHPUnit_Framework_TestCase {
 		private $db;
 
-		public function testEmpty () {
+		public function testSortingEmptyArrayDoesNothing () {
 			$empty = array();
 			quicksort($empty, 0, 0, '');			
 			$this->assertEmpty($empty);
 		}
 
-		public function testOneItem () {
+		public function testSortingOneItemArrayDoesNothing () {
 			$oneItem = array('value' => 5);
 			quicksort($oneItem, 0, 0, 'value');		
 			$this->assertCount(1, $oneItem);	
@@ -21,7 +21,7 @@
 		/**
 		 * @test
 		 */
-		public function sortDBdata  () {
+		public function sortDatabaseData  () {
 			$this->markTestIncomplete('Have not added the database yet.');
 		}
 
@@ -34,7 +34,7 @@
 		/**
 		 * @dataProvider pullData
 		 */
-		public function testSort ($unsortedArray) {
+		public function testLargeArraysOfRandomNumbersAreProperlySorted ($unsortedArray) {
 			$correctSorted = $unsortedArray;
 			$arrayToSort = $unsortedArray;
 			quicksort($arrayToSort, 0, count($arrayToSort) - 1, 'value');
