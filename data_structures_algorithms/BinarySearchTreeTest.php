@@ -54,6 +54,24 @@
 				$this->assertPresent($this->dataArray[$i], $this->binarySearchTree);
 		}
 
+		/**
+		 * @depends testDeleting1000
+		 */
+		public function testDeleteAndInsert() {
+			for ($i = 0; $i < 1000; $i++) {
+				$value = $this->dataArray[$i];
+				$this->binarySearchTree->delete($value);
+				//$this->assertNotPresent($value, $this->binarySearchTree);
+			}
+			for ($i = 0; $i < 1000; $i++) {
+				$value = $this->dataArray[$i];
+				$this->binarySearchTree->insert($value);
+				//$this->assertPresent($value, $this->binarySearchTree);
+			}
+			for ($i = 0; $i < count($this->dataArray); $i++)
+				$this->assertPresent($this->dataArray[$i], $this->binarySearchTree);
+		}		
+
 		public function assertPresent($value, $tree) {
 			$this->assertTrue($tree->search($value), "$value was not found when it should be.");
 		}
