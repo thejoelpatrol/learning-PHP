@@ -18,6 +18,10 @@
 			$this->binarySearchTree = new BinarySearchTree($this->dataArray);
 		}
 
+		/** 
+		* @covers BinarySearchTree::__construct
+ 		* @covers BinarySearchTree::insert
+		*/
 		public function testRoot() {
 			$root = $this->dataArray[0];
 			$this->assertPresent($root, $this->binarySearchTree);
@@ -25,13 +29,17 @@
 
 		/**
 		 * @depends testRoot
+		 * @covers BinarySearchTree::__construct
+ 		 * @covers BinarySearchTree::insert
 		 */
 		public function testAllValues() {
 			foreach ($this->dataArray as $presentValue)
 				$this->assertPresent($presentValue, $this->binarySearchTree);
 		}
 
-
+		/** 
+		* @covers BinarySearchTree::delete
+		*/
 		public function testDeletingRoot() {
 			$root = $this->dataArray[0];
 			$this->binarySearchTree->delete($root);
@@ -43,6 +51,7 @@
 
 		/** 
 		 * @depends testDeletingRoot
+ 		 * @covers BinarySearchTree::delete
 		 */
 		public function testDeleting1000() {
 			for ($i = 0; $i < 1000; $i++) {
@@ -56,20 +65,22 @@
 
 		/**
 		 * @depends testDeleting1000
+ 		 * @covers BinarySearchTree::delete
+ 		 * @covers BinarySearchTree::insert
 		 */
 		public function testDeleteAndInsert() {
 			for ($i = 0; $i < 1000; $i++) {
 				$value = $this->dataArray[$i];
 				$this->binarySearchTree->delete($value);
-				//$this->assertNotPresent($value, $this->binarySearchTree);
 			}
 			for ($i = 0; $i < 1000; $i++) {
 				$value = $this->dataArray[$i];
 				$this->binarySearchTree->insert($value);
-				//$this->assertPresent($value, $this->binarySearchTree);
 			}
-			for ($i = 0; $i < count($this->dataArray); $i++)
-				$this->assertPresent($this->dataArray[$i], $this->binarySearchTree);
+			for ($i = 0; $i < count($this->dataArray); $i++) {
+				$value = $this->dataArray[$i];
+				$this->assertPresent($value, $this->binarySearchTree);
+			}
 		}		
 
 		public function assertPresent($value, $tree) {
