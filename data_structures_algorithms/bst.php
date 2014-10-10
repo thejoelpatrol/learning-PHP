@@ -29,6 +29,8 @@
 		}
 
 		public function insert ($value) {
+			if (!is_numeric($value))
+				throw new InvalidArgumentException("'$value' is not a number", 1);
 			if (is_null($this->root)) {
 				$this->root = new Node($value);
 			} else {

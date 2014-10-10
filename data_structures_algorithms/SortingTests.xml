@@ -1,0 +1,6 @@
+<testsuites>
+	<testsuite name="Sort Tests">
+		<directory>/Applications/MAMP/htdocs/learning_tasks/data_structures_algorithms</directory>
+		<exclude>/Applications/MAMP/htdocs/learning_tasks/data_structures_algorithms/EmptyTest.php</exclude>
+	</testsuite>
+</testsuites>	

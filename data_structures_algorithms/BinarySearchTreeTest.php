@@ -81,7 +81,16 @@
 				$value = $this->dataArray[$i];
 				$this->assertPresent($value, $this->binarySearchTree);
 			}
-		}		
+		}	
+
+		/** 
+		 * @covers BinarySearchTree::insert
+		 * @expectedException InvalidArgumentException
+		 * @expectedExceptionCode 1
+		 */
+		public function testException() {
+			$this->binarySearchTree->insert("hey");
+		}	
 
 		public function assertPresent($value, $tree) {
 			$this->assertTrue($tree->search($value), "$value was not found when it should be.");
